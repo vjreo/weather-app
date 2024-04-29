@@ -8,5 +8,8 @@ setTimeout(() => {
   console.log('zero second timer...');
 }, 0);
 
+setTimeout(() => {
+  console.log('one second timer...');
+}, 1000);
 
 console.log('Stopping app...');
