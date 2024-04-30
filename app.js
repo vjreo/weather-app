@@ -1,15 +1,14 @@
-console.log('Starting app...');
+const request = require('postman-request');
 
-setTimeout(() => {
-  console.log('two second timer...');
-}, 2000);
+const url = 'http://api.weatherstack.com/current?access_key=apikey&query=Charlotte&units=f';
 
-setTimeout(() => {
-  console.log('zero second timer...');
-}, 0);
-
-setTimeout(() => {
-  console.log('one second timer...');
-}, 1000);
-
-console.log('Stopping app...');
+request({ 
+  url: url,
+  json: true,
+}, 
+(error, response) => {
+  const weatherDescription = response.body.current.weather_descriptions[0];
+  const currentTemp = response.body.current.temperature;
+  const feelsLikeTemp = response.body.current.feelslike;
+  console.log(`${weatherDescription}. It is currently ${currentTemp} fahrenheit out. It feels like ${feelsLikeTemp} fahrenheit out.`)
+});
